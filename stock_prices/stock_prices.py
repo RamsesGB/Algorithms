@@ -2,8 +2,24 @@
 
 import argparse
 
+
 def find_max_profit(prices):
-  pass
+    profit = 0
+    max_profit = -1000000000
+    for sell_price_index in range(len(prices) + 1, 0, -1):
+        starting_price = sell_price_index
+        for buy_price_index in range(sell_price_index + 1, len(prices)):
+            profit = prices[buy_price_index] - prices[sell_price_index]
+            print(f"Buy $ {prices[buy_price_index]} - Sell ${prices[sell_price_index]} = ${profit}")
+            if profit > max_profit:
+                current_profit = profit
+                max_profit = profit
+
+    return max_profit
+
+
+list = [10, 7, 5, 8, 11, 9]
+find_max_profit(list)
 
 
 if __name__ == '__main__':
